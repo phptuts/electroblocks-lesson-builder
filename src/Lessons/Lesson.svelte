@@ -55,7 +55,7 @@
   function move(e) {
     if (moving) {
       console.log(closeP.clientHeight);
-      top = e.clientY - closeP.clientHeight - offsetY;
+      top = e.clientY - closeP.clientHeight - offsetY - 8;
       left = e.clientX - offsetX;
     }
   }
