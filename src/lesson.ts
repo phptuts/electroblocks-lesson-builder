@@ -2,7 +2,7 @@ export interface Lesson {
   title: string;
   steps: Step[];
   id: string;
-  contentType: "mp4" | "jpg" | "gif" | "png" | "ogg";
+  contentType: "jpg" | "gif" | "png";
   folderName: string;
   authorFolderName: string;
   author: string;
@@ -12,6 +12,7 @@ export interface Lesson {
 
 export interface Step {
   title: string;
-  contentType: "mp4" | "jpg" | "gif" | "png" | "ogg";
+  contentType: "youtube" | "jpg" | "gif" | "png";
+  youtubeId?: string;
   id: string;
 }

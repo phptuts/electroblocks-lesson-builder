@@ -25,6 +25,7 @@
         title: "",
         contentType: "png",
         id: generaterId(),
+        youtubeId: "",
       },
     ];
     formData.steps = [...formData.steps];
@@ -137,7 +138,6 @@
         type="hidden"
         id="step-{index}-id"
         bind:value={formData.steps[index].id} />
-
       <FormGroup>
         <Label for="step_{index}_title">Title</Label>
         <Input
@@ -156,12 +156,24 @@
           type="select"
           bind:value={formData.steps[index].contentType}
           id="step_{index}_type">
+          <option>youtube</option>
           <option>png</option>
           <option>jpg</option>
           <option>gif</option>
-          <option>mp4</option>
         </Input>
       </FormGroup>
+      {#if formData.steps[index].contentType === 'youtube'}
+        <FormGroup>
+          <Label for="step_{index}_youtube_id">Youtube Id</Label>
+          <Input
+            type="text"
+            size="1"
+            readonly={false}
+            id="step_{index}_youtube_id"
+            bind:value={formData.steps[index].youtubeId}
+            placeholder="YoutubeId" />
+        </FormGroup>
+      {/if}
       {#if formData.steps.length > 1}
         <Button
           type="button"

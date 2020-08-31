@@ -17,7 +17,7 @@
       ? lesson.steps.length - 1
       : stepIndex;
   $: currentStep = lesson && lesson.steps[stepIndex];
-  $: isVideo = currentStep && ["mp4", "ogg"].includes(currentStep.contentType);
+  $: isYoutube = currentStep && ["youtube"].includes(currentStep.contentType);
   $: isImage =
     currentStep && ["png", "gif", "jpg"].includes(currentStep.contentType);
   $: url =
@@ -55,8 +55,9 @@
   function move(e) {
     if (moving) {
       console.log(closeP.clientHeight);
-      top = e.clientY - closeP.clientHeight - offsetY - 8;
-      left = e.clientX - offsetX;
+      debugger;
+      top = e.pageY - closeP.clientHeight - offsetY;
+      left = e.pageX - offsetX;
     }
   }
 
@@ -95,10 +96,9 @@
   section#header span.active {
     background-color: #ffaac3;
   }
-  img,
-  video {
+  img {
     width: 560px;
-    height: 340px;
+    height: 315px;
   }
   h3#text {
     text-align: center;
@@ -162,13 +162,19 @@
       {/each}
     {/if}
   </section>
-  <h3 id="text">{currentStep.title}</h3>
-
-  {#if isVideo}
-    <video>
-      <track kind="captions" />
-      <source src={url} />
-    </video>
+  {#if currentStep.title !== ''}
+    <h3 id="text">{currentStep.title}</h3>
+  {/if}
+  {#if isYoutube}
+    <iframe
+      title={currentStep.title}
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/{currentStep.youtubeId}"
+      frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope;
+      picture-in-picture"
+      allowfullscreen />
   {/if}
 
   {#if isImage}

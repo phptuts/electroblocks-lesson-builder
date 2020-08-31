@@ -28,7 +28,6 @@
     border-bottom-right-radius: 4px;
     background-color: white;
     text-align: center;
-    margin-top: -8px;
     padding: 10px;
   }
 </style>
