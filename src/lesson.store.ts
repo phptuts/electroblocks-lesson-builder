@@ -10,6 +10,9 @@ const lessonStore = writable<Lesson>({
   folderName: "",
   author: "",
   authorFolderName: "",
+  level: "Beginner",
+  category: "",
+  company: "",
   email: "",
   steps: [],
 });

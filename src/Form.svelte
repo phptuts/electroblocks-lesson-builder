@@ -12,6 +12,9 @@
     folderName: "",
     authorFolderName: "",
     author: "",
+    level: "Beginner",
+    category: "",
+    company: "",
     email: "",
     steps: [],
   };
@@ -77,6 +80,29 @@
       placeholder="title" />
   </FormGroup>
   <FormGroup>
+    <Label for="lesson_level">Lesson Level</Label>
+    <Input
+      readonly={false}
+      size="1"
+      type="select"
+      bind:value={formData.level}
+      id="lesson_level">
+      <option>Beginner</option>
+      <option>Intermediate</option>
+      <option>Expert</option>
+      <option>All Levels</option>
+    </Input>
+  </FormGroup>
+  <FormGroup>
+    <Label for="company">Company</Label>
+    <Input
+      bind:value={formData.company}
+      type="text"
+      size="1"
+      readonly={false}
+      id="company" />
+  </FormGroup>
+  <FormGroup>
     <Label for="author">Author's Name</Label>
     <Input
       bind:value={formData.author}
@@ -85,6 +111,7 @@
       readonly={false}
       id="author" />
   </FormGroup>
+
   <FormGroup>
     <Label for="author_email">Author's Email</Label>
     <Input
@@ -138,16 +165,18 @@
         type="hidden"
         id="step-{index}-id"
         bind:value={formData.steps[index].id} />
-      <FormGroup>
-        <Label for="step_{index}_title">Title</Label>
-        <Input
-          type="text"
-          size="1"
-          readonly={false}
-          id="step_{index}_title"
-          bind:value={formData.steps[index].title}
-          placeholder="title" />
-      </FormGroup>
+      {#if formData.steps[index].contentType !== 'youtube'}
+        <FormGroup>
+          <Label for="step_{index}_title">Title</Label>
+          <Input
+            type="text"
+            size="1"
+            readonly={false}
+            id="step_{index}_title"
+            bind:value={formData.steps[index].title}
+            placeholder="title" />
+        </FormGroup>
+      {/if}
       <FormGroup>
         <Label for="step_{index}_type">Content Type</Label>
         <Input

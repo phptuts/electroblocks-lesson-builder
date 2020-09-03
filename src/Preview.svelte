@@ -1,5 +1,5 @@
 <script>
-  import LessonPreview from "./Lessons/Lesson-Preview.svelte";
+  import LessonPreview from "./Lessons/LessonPreview.svelte";
   import Lesson from "./Lessons/Lesson.svelte";
   import { FormGroup, Input, Label } from "sveltestrap";
 

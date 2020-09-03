@@ -1,26 +1,28 @@
 <script lang="ts">
   import type { Lesson } from "../lesson";
   import lessonStore from "../lesson.store";
-  $: lessonMainImage = $lessonStore
-    ? `http://localhost:3000/lessons/${$lessonStore.authorFolderName}/${$lessonStore.folderName}/main.${$lessonStore.contentType}`
-    : "";
-  $: lessonGetKey = $lessonStore
-    ? `${$lessonStore.title.replace(" ", "-")}`
+  let lesson: Lesson;
+  lessonStore.subscribe((newLesson) => {
+    lesson = newLesson;
+  });
+
+  $: lessonMainImage = lesson
+    ? `http://localhost:3000/lessons/${lesson.authorFolderName}/${lesson.folderName}/main.${lesson.contentType}`
     : "";
 </script>
 
 <style>
   article {
     margin-bottom: 10px;
-    flex: 1;
+    width: 200px;
     margin: 20px;
     cursor: pointer;
-    width: 300px;
   }
   article img {
-    width: 300px;
-    height: 200px;
     border: solid gray 1px;
+    width: 200px;
+    height: 200px;
+    box-sizing: border-box;
   }
   article h2 {
     border: solid gray 1px;
@@ -29,10 +31,13 @@
     background-color: white;
     text-align: center;
     padding: 10px;
+    box-sizing: border-box;
+    width: 200px;
+    margin-top: -10px;
   }
 </style>
 
-<article data-lesson={lessonGetKey}>
+<article>
   <img src={lessonMainImage} alt={$lessonStore?.title} />
   <h2>{$lessonStore?.title}</h2>
 </article>

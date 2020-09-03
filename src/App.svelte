@@ -22,18 +22,16 @@
   let fileList;
   let formData;
 
-  lessonStore.subscribe((l) => (lessonObject = l));
-
   onMount(() => {
     left = document.body.clientWidth / 2 + 40;
   });
 
   function download() {
-    if (lessonObject.title !== "") {
-      const blob = new Blob([JSON.stringify(lessonObject)], {
+    if (formData.title !== "") {
+      const blob = new Blob([JSON.stringify(formData)], {
         type: "application/json;charset=utf-8",
       });
-      saveAs(blob, lessonObject.title + ".json");
+      saveAs(blob, formData.title + ".json");
     }
   }
 
@@ -50,6 +48,7 @@
 
     fr.readAsText(file);
   }
+  $: lessonStore.set(formData);
 </script>
 
 <style>
